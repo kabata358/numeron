@@ -42,14 +42,17 @@ public class Main {
 		
 		// 3つの数字の入力と判定処理
 		while (true) {
-			System.out.print("3桁の数字を入力してください。　-> ");
+			System.out.print("3桁の半角数字を入力してください。　-> ");
 			inputNum = scanner.next();
 			
-			//★★★入力されたのが数字かの判定が必要
-			
+			// 数字以外が入力されたか確認
+			if (!(inputNum.matches("[0-9]+"))) {
+				System.out.println("文字は入力しないでください。" + System.getProperty("line.separator"));
+				continue;
+			}
 			
 			// 入力した文字列の桁数を確認
-			if (inputNum.length() != 3) {
+			if (!(inputNum.matches("[0-9]{3}"))) {
 				System.out.println("数字は3桁で入力してください。" + System.getProperty("line.separator"));
 				continue;
 			}
@@ -61,18 +64,18 @@ public class Main {
 			}
 			
 			// 入力した3つの数字の重複確認
-			boolean flag = true;
+			boolean checkNum = true;
 			
 			for (int i = 0; i < 3; i++){
 				for (int j = 0; j < i; j++) {
 					// 入力した数字が重複している場合
 					if (num[i] == num[j]){
-						flag = false;
+						checkNum = false;
 					}
 				}
 			}
 			
-			if (flag == false) {
+			if (checkNum == false) {
 				System.out.println("同じ数字は入力しないでください。" + System.getProperty("line.separator"));
 				continue;
 			}
@@ -106,7 +109,7 @@ public class Main {
 		System.out.println("+------------------+");
 		System.out.println("|     ゲーム終了     |");
 		System.out.println("+------------------+");
-		System.out.println(count + "回目で正解しました。");
+		System.out.println(" " + count + " 回目で正解しました！");
 	}
 
 }
